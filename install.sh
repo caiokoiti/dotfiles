@@ -30,6 +30,7 @@ CORE_UTILS=(
    "make"
    "gcc"
    "xclip"
+   "ghostty"
 )
 
 DEV_TOOLS=(
