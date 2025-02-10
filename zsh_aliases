@@ -1,0 +1,17 @@
+# Navigation
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+
+# File operations
+alias c='clear'
+alias cleanupDS='find . -type f -name "*.DS_Store" -ls -delete'
+alias cpwd='pwd | pbcopy'
+alias f='open -a Finder ./'
+alias ll='ls -FGlAhp'
+alias mkdir='mkdir -pv'
+alias qfind='find . -name '
+
+# Tools and utilities
+alias path='echo -e ${PATH//:/\\n}'
+alias less='less -FSRXc'
