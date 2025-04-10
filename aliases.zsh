@@ -6,19 +6,19 @@ alias ....='cd ../../../'
 # File operations
 alias c='clear'
 alias cleanupDS='find . -type f -name "*.DS_Store" -ls -delete'
-alias cpwd='pwd | pbcopy'  # macOS-specific (pbcopy)
+alias cpwd='pwd | pbcopy'
 alias f='open -a Finder ./'
-alias ll='ls -l -A -h -F --color=auto'  # Consistent with functions.sh cd
+alias ll='ls -l -A -h -F --color=auto'
 alias mkdir='mkdir -pv'
-alias qfind='find . -name'  # Usage: qfind "*.txt"
+alias qfind='find . -name'
 
 # Tools and utilities
 alias path='echo -e ${PATH//:/\\n}'
 alias less='less -FSRXc'
 
 # Custom scripts
-alias compress='[ -f ~/.config/scripts/compress_screencaps.sh ] && bash ~/.config/scripts/compress_screencaps.sh || echo "Script not found"'  # Use bash explicitly
-alias compressDesktop='[ -f ~/.config/scripts/compress_screencaps.sh ] && bash ~/.config/scripts/compress_screencaps.sh ~/Desktop || echo "Script not found"'  # Use bash explicitly
+alias compress='compress_screencaps'
+alias compressDesktop='compress_screencaps ~/Desktop'
 
 # Development tools
 alias lg='lazygit'

@@ -1,6 +1,19 @@
-# Source configs
-[[ -f ~/.aliases.zsh ]] && source ~/.aliases.zsh
-[[ -f ~/.functions.zsh ]] && source ~/.functions.zsh
+#!/usr/bin/env zsh
+
+set -e
+
+# Source the config file to get DOTFILES_DIR and other constants
+SCRIPT_DIR="${0:a:h}"
+source "$SCRIPT_DIR/config.zsh"
+
+# Add custom bin directory to PATH
+export PATH="$PATH:$DOTFILES_DIR/bin"
+
+# Source custom aliases
+[ -f "$ALIASES_FILE" ] && source "$ALIASES_FILE"
+
+# Source custom functions
+[ -f "$FUNCTIONS_FILE" ] && source "$FUNCTIONS_FILE"
 
 # History settings
 HISTFILE=~/.zsh_history
@@ -33,7 +46,7 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # BAT Theme
-export BAT_THEME "Dracula"
+export BAT_THEME="Dracula"
 
 # Homebrew path (dynamic for ARM and Intel Macs)
 if [[ -d /opt/homebrew/bin ]]; then
@@ -50,6 +63,7 @@ export PATH="$N_PREFIX/bin:$PATH"
 
 # Ripgrep config
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
 
 # FD config
 export FD_OPTIONS="--follow --exclude .git --exclude node_modules"
@@ -87,5 +101,8 @@ if [[ ! -f ~/.zcompdump || $(find ~/.zcompdump -mtime +1) ]]; then
 else
     compinit -C  # Skip checking if cache is fresh (faster)
 fi
+
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+echo "Custom dotfiles loaded successfully"
