@@ -1,14 +1,18 @@
 # Source configs
-[[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
+[[ -f ~/.aliases.zsh ]] && source ~/.aliases.zsh
 [[ -f ~/.functions.zsh ]] && source ~/.functions.zsh
 
 # History settings
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt HIST_IGNORE_DUPS     # Ignore duplicate commands
-setopt SHARE_HISTORY        # Share history across sessions
-setopt HIST_STAMPS          # Add timestamps to history
+HIST_STAMPS="dd-mm-yyyy"
+
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt SHARE_HISTORY
+setopt AUTO_MENU
 
 # Replace cat with bat if available
 if command -v bat >/dev/null 2>&1; then

@@ -1,25 +1,5 @@
-# Enhanced cd with automatic ls
-function cd() {
-    local skip_ls=false
-    local ls_opts="${LS_OPTS:- -lAhF --color=auto}"
-
-    # Check for --no-ls flag
-    for arg in "$@"; do
-        if [[ "$arg" == "--no-ls" ]]; then
-            skip_ls=true
-            shift
-        fi
-    done
-
-    if builtin cd "$@"; then
-        if [[ "$skip_ls" == false ]]; then
-            ls $ls_opts
-        fi
-        return 0
-    else
-        echo "cd: Failed to change directory to $*" >&2
-        return 1
-    fi
+function cd {
+    builtin cd "$@" && ls -l -A -h -F --color=auto
 }
 
 # Universal archive extractor

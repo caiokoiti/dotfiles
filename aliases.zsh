@@ -8,7 +8,7 @@ alias c='clear'
 alias cleanupDS='find . -type f -name "*.DS_Store" -ls -delete'
 alias cpwd='pwd | pbcopy'  # macOS-specific (pbcopy)
 alias f='open -a Finder ./'
-alias ll='ls -lAhF --color=auto'  # Consistent with functions.sh cd
+alias ll='ls -l -A -h -F --color=auto'  # Consistent with functions.sh cd
 alias mkdir='mkdir -pv'
 alias qfind='find . -name'  # Usage: qfind "*.txt"
 
