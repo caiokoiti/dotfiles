@@ -1,105 +1,131 @@
 #!/bin/bash
 
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-BACKUP_ROOT="$HOME/.config/_backup"
+set -e
 
-# Function to list available backups
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_FILE="$HOME/dotfiles_restore_$(date +%Y%m%d_%H%M%S).log"
+
+# Source the backup script for shared functions (if needed)
+source "$DOTFILES_DIR/backup.sh" || { echo "Failed to source backup.sh"; exit 1; }
+
+log() { echo "$1" | tee -a "$LOG_FILE"; }
+error() { echo -e "${RED}ERROR: $1${NC}" | tee -a "$LOG_FILE"; exit 1; }
+
+# Function to list available backups for a specific file
 list_backups() {
-    if [ -d "$BACKUP_ROOT" ]; then
-        echo "Available backups:"
-        ls -t "$BACKUP_ROOT" | while read -r backup; do
-            local backup_date=$(echo "$backup" | cut -c1-8)
-            local backup_time=$(echo "$backup" | cut -c10-15)
-            local formatted_date=$(date -j -f "%Y%m%d" "$backup_date" "+%B %d, %Y")
-            local formatted_time=$(echo "$backup_time" | sed 's/\(..\)\(..\)\(..\)/\1:\2:\3/')
-            local file_count=$(find "$BACKUP_ROOT/$backup" -type f -not -name 'backup.log' | wc -l | tr -d ' ')
-            echo "  $backup - $formatted_date $formatted_time ($file_count files)"
-        done
-    else
-        echo "No backups found in $BACKUP_ROOT"
+    local file="$1"
+    local backup_pattern="${file}.backup_*"
+    local backups_found=false
+
+    log "Available backups for $file:"
+    for backup in $backup_pattern; do
+        if [ -e "$backup" ]; then
+            backups_found=true
+            local timestamp=$(echo "$backup" | grep -oE '[0-9]{8}_[0-9]{6}')
+            if [ -n "$timestamp" ]; then
+                local date_part=$(echo "$timestamp" | cut -c1-8)
+                local time_part=$(echo "$timestamp" | cut -c10-15)
+                # Portable date parsing
+                local formatted_date=$(date -d "$date_part" "+%B %d, %Y" 2>/dev/null || date -jf "%Y%m%d" "$date_part" "+%B %d, %Y")
+                local formatted_time=$(echo "$time_part" | sed 's/\(..\)\(..\)\(..\)/\1:\2:\3/')
+                log "  $timestamp - $formatted_date $formatted_time"
+            fi
+        fi
+    done
+
+    if [ "$backups_found" = false ]; then
+        log "No backups found for $file"
         exit 1
     fi
 }
 
-# Function to restore a specific file from backup
+# Function to restore a specific file from a backup
 restore_file() {
-    local backup_dir="$1"
-    local file="$2"
-    local target="$HOME/${file#.config/_backup/*/}"
-    
-    if [ -f "$backup_dir/$file" ]; then
-        mkdir -p "$(dirname "$target")"
-        cp -p "$backup_dir/$file" "$target"
-        echo "✓ Restored: $target"
-        return 0
-    else
-        echo "→ Skip: $file (not found in backup)"
+    local backup_file="$1"
+    local target="$2"
+
+    # Check if backup exists
+    if [ ! -f "$backup_file" ]; then
+        log "→ Skip: $backup_file (not found)"
         return 1
     fi
+
+    # Check write permissions
+    if [ ! -w "$(dirname "$target")" ]; then
+        error "No write permission for $target"
+    fi
+
+    # Backup existing target if it exists
+    if [ -e "$target" ]; then
+        backup_file "$target"
+        log "Backed up existing $target before restoration"
+    fi
+
+    # Restore the file
+    mkdir -p "$(dirname "$target")"
+    cp -p "$backup_file" "$target" || error "Failed to restore $target"
+    log "✓ Restored: $target"
 }
 
-# Function to restore a specific backup
-restore_backup() {
-    local backup_dir="$1"
-    local specific_file="$2"
-    
-    if [ ! -d "$backup_dir" ]; then
-        echo "Error: Backup directory not found: $backup_dir"
-        exit 1
+# Main restore function
+restore() {
+    local file="$1"
+    local timestamp="$2"
+
+    # Validate file
+    if [ ! -f "$file" ] && [ ! -d "$file" ]; then
+        error "File $file does not exist or is not a regular file/directory"
     fi
-    
-    # Read backup log
-    if [ -f "$backup_dir/backup.log" ]; then
-        echo "Restoring from backup created at: $(head -n 1 "$backup_dir/backup.log" | cut -d 'at' -f2-)"
+
+    # List backups if no timestamp is provided
+    if [ -z "$timestamp" ]; then
+        list_backups "$file"
+        exit 0
     fi
-    
-    # If a specific file is requested, restore only that
-    if [ -n "$specific_file" ]; then
-        if [ -f "$backup_dir/$specific_file" ]; then
-            restore_file "$backup_dir" "$specific_file"
-        else
-            echo "Error: File $specific_file not found in backup"
-            exit 1
-        fi
-        return
+
+    # Construct backup file path
+    local backup_file="${file}.backup_${timestamp}"
+
+    # Confirm restoration
+    log "Restoring $file from backup $timestamp"
+    read -p "Proceed? (y/N): " confirm
+    if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+        log "Restoration cancelled"
+        exit 0
     fi
-    
-    # Otherwise restore all files from backup
-    echo "Starting restoration..."
-    find "$backup_dir" -type f -not -name 'backup.log' | while read -r file; do
-        local relative_file=${file#$backup_dir/}
-        restore_file "$backup_dir" "$relative_file"
-    done
-    
-    echo "Restoration complete!"
+
+    # Restore the file
+    restore_file "$backup_file" "$file"
 }
 
 # Main script
 case "$1" in
     "list")
-        list_backups
+        if [ -z "$2" ]; then
+            error "Usage: $0 list <file>"
+        fi
+        list_backups "$2"
         ;;
     "restore")
-        if [ -z "$2" ]; then
-            echo "Usage:"
-            echo "  $0 restore <backup-timestamp> [specific-file]"
-            echo "  $0 list                    # List available backups"
-            echo ""
-            list_backups
-            exit 1
+        if [ -z "$2" ] || [ -z "$3" ]; then
+            error "Usage: $0 restore <file> <timestamp>"
         fi
-        
-        backup_dir="$BACKUP_ROOT/$2"
-        restore_backup "$backup_dir" "$3"
+        restore "$2" "$3"
         ;;
     *)
-        echo "Usage:"
-        echo "  $0 list                    # List available backups"
-        echo "  $0 restore <backup-timestamp> [specific-file]"
-        echo ""
-        echo "Examples:"
-        echo "  $0 list"
-        echo "  $0 restore 20250218_123456"
-        echo "  $0 restore 20250218_123456 .zshrc"
+        log "Usage:"
+        log "  $0 list <file>             # List available backups for a file"
+        log "  $0 restore <file> <timestamp>  # Restore a specific file from a backup"
+        log ""
+        log "Examples:"
+        log "  $0 list ~/.zshrc"
+        log "  $0 restore ~/.zshrc 20250218_123456"
+        exit 1
         ;;
 esac
+
+log "${GREEN}Operation completed! Log saved to: $LOG_FILE${NC}"
