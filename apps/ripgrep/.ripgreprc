@@ -1,0 +1,18 @@
+# Search behavior
+--smart-case
+--follow
+--hidden
+--glob=!.git/*
+--glob=!node_modules/*
+--glob=!dist/*
+
+# Sorting
+--sort=path
+
+# Color settings (aligned with Dracula theme)
+--colors=path:bg:0x3b,0x3b,0x3b
+--colors=path:fg:0xf8,0xf8,0xf2
+--colors=line:fg:0xf1,0xfa,0x8c
+--colors=column:fg:0x62,0x72,0xa4
+--colors=match:bg:0x2b,0x83,0xa6
+--colors=match:fg:0xff,0xff,0xff
