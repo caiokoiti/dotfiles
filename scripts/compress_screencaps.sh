@@ -1,10 +1,6 @@
 #!/bin/bash
 
-# Check for ffmpeg
-if ! command -v ffmpeg &> /dev/null; then
-   echo "ffmpeg not found. Installing..."
-   brew install ffmpeg
-fi
+set -e
 
 input_directory="$1"
 cd "$input_directory" || exit

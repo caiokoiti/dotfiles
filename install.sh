@@ -47,6 +47,7 @@ DEV_TOOLS=(
     "ripgrep" "fd" "bat"                  # Search and file tools
     "n" "neovim" "lua" "luarocks"         # Development
     "lazygit" "lazydocker"                # Added for aliases
+    "ffmpeg"                              # for the scripts/compress_screencaps.sh
     "font-fira-mono-nerd-font"            # Fonts
     "font-jetbrains-mono-nerd-font"
 )
