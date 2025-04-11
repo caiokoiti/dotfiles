@@ -7,8 +7,12 @@ brew "unzip"
 brew "p7zip"
 brew "make"
 brew "gcc"
-brew "xclip"
 cask "ghostty"
+cask "spotify"
+cask "sourcetree"
+cask "whatsapp"
+cask "obsidian"
+cask "visual-studio-code"
 
 # Shell enhancements
 brew "starship"
