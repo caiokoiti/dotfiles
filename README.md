@@ -14,8 +14,8 @@ Personal configuration for macOS development environment.
 ## Installation
 
 ```bash
-git clone https://github.com/caiokoiti/dotconfig.git
-cd dotconfig
+git clone https://github.com/caiokoiti/dotfiles.git
+cd dotfiles
 ./install.zsh
 ```
 
