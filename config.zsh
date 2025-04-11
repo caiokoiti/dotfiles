@@ -23,4 +23,5 @@ export FUNCTIONS_FILE="$DOTFILES_DIR/functions.zsh"
 export SYMLINK_FILES=(
   "$DOTFILES_DIR/.config/starship.toml:$HOME_DIR/.config/starship.toml"
   "$DOTFILES_DIR/.config/.ripgreprc:$HOME_DIR/.ripgreprc"
+  "$DOTFILES_DIR/.config/ghostty/config:$HOME_DIR/.config/ghostty/config"
 )
