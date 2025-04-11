@@ -25,6 +25,9 @@ backup_file() {
 append_source_to_zshrc() {
   local source_line="# Source custom dotfiles configuration\n# To uninstall run: $DOTFILES_DIR/uninstall.sh\n[ -f $EXTENDED_ZSHRC ] && source $EXTENDED_ZSHRC"
   
+  echo "Debug - ZSHRC_PATH: $ZSHRC_PATH"
+  echo "Debug - Checking if exists: $(test -f "$ZSHRC_PATH" && echo "Yes" || echo "No")"
+  
   if ! grep -qF "$EXTENDED_ZSHRC" "$ZSHRC_PATH"; then
     echo "Appending source line to $ZSHRC_PATH"
     echo -e "\n$source_line" >> "$ZSHRC_PATH"
@@ -122,8 +125,22 @@ install() {
   install_packages
   
   create_symlinks
-  
+
+  # Installation complete
   echo "Installation complete!"
+  
+  # Ask if the user wants to source .zshrc now
+  echo ""
+  read -q "REPLY?Would you like to source ~/.zshrc now to apply changes? (y/n) "
+  echo ""
+  
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Sourcing ~/.zshrc..."
+    source "$ZSHRC_PATH"
+    echo "Configuration applied!"
+  else
+    echo "You can apply changes later by running 'source ~/.zshrc' or by opening a new terminal window."
+  fi
 }
 
 # Run installation

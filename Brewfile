@@ -4,12 +4,11 @@ brew "gnu-tar"
 brew "gzip"
 brew "bzip2"
 brew "unzip"
-brew "the-unarchiver"
 brew "p7zip"
 brew "make"
 brew "gcc"
 brew "xclip"
-brew "ghostty"
+cask "ghostty"
 
 # Shell enhancements
 brew "starship"
@@ -34,9 +33,6 @@ brew "lazydocker"
 
 # Media tools
 brew "ffmpeg"      # For compress_screencaps.sh
-
-# Taps
-tap "homebrew/cask-fonts"
 
 # Fonts
 cask "font-fira-mono-nerd-font"

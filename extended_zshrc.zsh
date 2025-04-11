@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-set -e
-
 # Source the config file to get DOTFILES_DIR and other constants
 SCRIPT_DIR="${0:a:h}"
 source "$SCRIPT_DIR/config.zsh"
