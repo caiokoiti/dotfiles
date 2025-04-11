@@ -110,6 +110,30 @@ create_symlinks() {
   done
 }
 
+# Function to install Neovim Kickstart
+install_nvim_kickstart() {
+  # Check if Neovim is installed
+  if ! command -v nvim &>/dev/null; then
+    echo "Neovim not found, skipping Kickstart installation"
+    return 0
+  fi
+
+  echo "Neovim detected - setting up Kickstart configuration..."
+
+  if [[ ! -d "$HOME/.config/nvim" ]]; then
+    # Clone the Kickstart repository
+    echo "Downloading Neovim Kickstart..."
+    git clone https://github.com/nvim-lua/kickstart.nvim.git "$HOME/.config/nvim"
+
+
+    echo "Neovim Kickstart installed successfully!"
+  else
+    echo "Neovim Kickstart is already installed!"
+  fi
+  
+  nvim --headless "+Lazy sync" +qa
+}
+
 # Main installation function
 install() {
   echo "Starting installation of custom dotfiles..."
@@ -123,24 +147,14 @@ install() {
   install_homebrew
   
   install_packages
+
+  install_nvim_kickstart
   
   create_symlinks
 
-  # Installation complete
   echo "Installation complete!"
-  
-  # Ask if the user wants to source .zshrc now
-  echo ""
-  read -q "REPLY?Would you like to source ~/.zshrc now to apply changes? (y/n) "
-  echo ""
-  
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Sourcing ~/.zshrc..."
-    source "$ZSHRC_PATH"
-    echo "Configuration applied!"
-  else
-    echo "You can apply changes later by running 'source ~/.zshrc' or by opening a new terminal window."
-  fi
+  source "$ZSHRC_PATH"
+  echo "Configuration applied!"
 }
 
 # Run installation
