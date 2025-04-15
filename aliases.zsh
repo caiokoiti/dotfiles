@@ -17,9 +17,9 @@ alias path='echo -e ${PATH//:/\\n}'
 alias less='less -FSRXc'
 
 # Custom scripts
-alias compress='compress_screencaps'
-alias compressDesktop='compress_screencaps ~/Desktop'
-alias compressDropbox='compress_screencaps ~/Dropbox/Screenshots'
+alias compress='compress_screencaps.sh'
+alias compressDesktop='compress_screencaps.sh ~/Desktop'
+alias compressDropbox='compress_screencaps.sh ~/Dropbox/Screenshots'
 
 # Development tools
 alias lg='lazygit'
