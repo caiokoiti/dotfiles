@@ -19,6 +19,7 @@ alias less='less -FSRXc'
 # Custom scripts
 alias compress='compress_screencaps'
 alias compressDesktop='compress_screencaps ~/Desktop'
+alias compressDropbox='compress_screencaps ~/Dropbox/Screenshots'
 
 # Development tools
 alias lg='lazygit'
