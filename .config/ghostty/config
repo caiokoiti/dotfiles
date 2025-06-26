@@ -5,8 +5,8 @@ background = 000000
 background-opacity = 0.5
 background-blur = 20
 
-window-padding-x = 100
-window-padding-y = 100
+window-padding-x = 35
+window-padding-y = 35
 window-padding-balance = true
 
 font-size = 15
