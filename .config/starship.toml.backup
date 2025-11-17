@@ -4,114 +4,20 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
-# Jetpack-style format with original icons
-format = """($nix_shell$container$fill$git_metrics\n)$cmd_duration\
-$hostname\
-$localip\
-$shlvl\
-$shell\
-$env_var\
-$jobs\
-$sudo\
-$username\
-$character"""
-
-right_format = """
-$singularity\
-$kubernetes\
-$directory\
-$vcsh\
-$fossil_branch\
-$git_branch\
-$git_commit\
-$git_state\
-$git_status\
-$hg_branch\
-$pijul_channel\
-$docker_context\
-$package\
-$c\
-$cpp\
-$cmake\
-$cobol\
-$daml\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$fennel\
-$fortran\
-$golang\
-$guix_shell\
-$haskell\
-$haxe\
-$helm\
-$java\
-$julia\
-$kotlin\
-$gradle\
-$lua\
-$nim\
-$nodejs\
-$ocaml\
-$opa\
-$perl\
-$php\
-$pulumi\
-$purescript\
-$python\
-$raku\
-$rlang\
-$red\
-$ruby\
-$rust\
-$scala\
-$solidity\
-$swift\
-$terraform\
-$vlang\
-$vagrant\
-$xmake\
-$zig\
-$buf\
-$conda\
-$pixi\
-$meson\
-$spack\
-$memory_usage\
-$aws\
-$gcloud\
-$openstack\
-$azure\
-$crystal\
-$custom\
-$status\
-$os\
-$battery\
-$time"""
-
-[fill]
-symbol = ' '
+# Configure right prompt
+right_format = "$time"
 
 [time]
 disabled = false
-format = '[$time]($style) '
+format = '🕐 [$time]($style) '
 time_format = "%H:%M"
 style = "bold blue"
 
-[git_metrics]
-format = '([▴$added]($added_style))([▿$deleted]($deleted_style))'
-added_style = 'italic dimmed green'
-deleted_style = 'italic dimmed red'
-ignore_submodules = true
-disabled = false
-
 # Replace the '❯' symbol in the prompt with '➜'
+
 [character] # The name of the module we are configuring is 'character'
 success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-error_symbol = '[➜](bold red)'
+error_symbol = '[ opsy ➜](bold red)'
 
 [aws]
 symbol = "  "
@@ -284,8 +190,8 @@ disabled = false
 [custom.brew_outdated]
 command = "brew-outdated-count"
 when = "command -v brew"
-symbol = ""
+symbol = "🍺 "
 style = "bold yellow"
-format = "[$output]($style)"
+format = "[$symbol$output]($style) "
 ignore_timeout = true
 detect_extensions = []

@@ -1,0 +1,5 @@
+#!/bin/bash
+count=$(brew outdated --quiet | wc -l | tr -d ' ')
+if [ "$count" -gt 0 ]; then
+    echo  "󰚰 ($count)"
+fi
