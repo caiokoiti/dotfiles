@@ -15,6 +15,7 @@ alias qfind='find . -name'
 # Tools and utilities
 alias path='echo -e ${PATH//:/\\n}'
 alias less='less -FSRXc'
+alias qq='q chat --resume'
 
 # Custom scripts
 alias compress='compress_screencaps.sh'
