@@ -21,6 +21,7 @@ alias qq='q chat --resume'
 alias compress='compress_screencaps.sh'
 alias compressDesktop='compress_screencaps.sh ~/Desktop'
 alias compressDropbox='compress_screencaps.sh ~/Dropbox/Screenshots'
+alias compressOD='compress_screencaps.sh ~/Library/CloudStorage/OneDrive-Dabble/screenshots'
 
 # Development tools
 alias lg='lazygit'

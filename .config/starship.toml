@@ -286,6 +286,6 @@ command = "brew-outdated-count"
 when = "command -v brew"
 symbol = ""
 style = "bold yellow"
-format = "[$output]($style)"
+format = "[$output]($style) "
 ignore_timeout = true
 detect_extensions = []
