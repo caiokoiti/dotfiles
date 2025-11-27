@@ -1,5 +1,22 @@
 #!/bin/bash
+cache_file="/tmp/brew-outdated-cache"
+cache_ttl=86400  # 24 hours in seconds
+
+# Check if cache exists and is fresh
+if [ -f "$cache_file" ]; then
+    cache_age=$(($(date +%s) - $(stat -f %m "$cache_file" 2>/dev/null || stat -c %Y "$cache_file")))
+    if [ "$cache_age" -lt "$cache_ttl" ]; then
+        cat "$cache_file"
+        exit 0
+    fi
+fi
+
+# Cache expired or doesn't exist, run brew outdated
 count=$(brew outdated --quiet | wc -l | tr -d ' ')
 if [ "$count" -gt 0 ]; then
-    echo  "󰚰 ($count)"
+    output="󰚰 ($count)"
+    echo "$output" > "$cache_file"
+    echo "$output"
+else
+    echo "" > "$cache_file"
 fi

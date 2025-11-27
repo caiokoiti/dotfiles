@@ -2,8 +2,8 @@ theme = dracula
 
 background = 000000
 
-background-opacity = 0.5
-background-blur = 20
+background-opacity = 0.95
+# background-blur = 20  # Disabled - causes significant performance issues
 
 window-padding-x = 35
 window-padding-y = 35
