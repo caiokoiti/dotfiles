@@ -281,11 +281,3 @@ symbol = " "
 [direnv]
 disabled = false
 
-[custom.brew_outdated]
-command = "brew-outdated-count"
-when = "command -v brew"
-symbol = ""
-style = "bold yellow"
-format = "[$output]($style) "
-ignore_timeout = true
-detect_extensions = []
