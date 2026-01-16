@@ -27,9 +27,8 @@ brew "bat"
 
 # Development
 brew "n"           # Node version manager
-brew "neovim"
-brew "lua"
-brew "luarocks"
+brew "helix"
+brew "zellij"
 
 # Git and Docker tools
 brew "lazygit"

@@ -36,8 +36,8 @@ export LC_ALL=en_AU.UTF-8
 export TZ='Australia/Perth'
 
 # Editor
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='hx'
+export VISUAL='hx'
 
 # Colors
 export CLICOLOR=1
