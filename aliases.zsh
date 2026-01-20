@@ -54,7 +54,7 @@ alias zdetach='zellij action detach'
 
 # Fuzzy find + attach sessão
 zz() {
-    local session=$(zellij list-sessions --short 2>/dev/null | fzf)
+    local session=$(zellij list-sessions --no-formatting 2>/dev/null | fzf | awk '{print $1}')
     if [[ -n "$session" ]]; then
         zellij attach "$session"
     fi
