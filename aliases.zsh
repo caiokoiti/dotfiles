@@ -47,14 +47,14 @@ alias zka='zellij kill-all-sessions'
 alias zdel='zellij delete-session'
 
 # Limpa sessões que já terminaram (EXITED)
-alias zclean='zellij list-sessions 2>/dev/null | grep "EXITED" | awk "{print \$1}" | xargs -I {} zellij delete-session {}'
+alias zclean='zellij list-sessions --no-formatting 2>/dev/null | grep "EXITED" | awk "{print \$1}" | xargs -I {} zellij delete-session {}'
 
 # Detach da sessão atual (também pode usar Ctrl+o,d)
 alias zdetach='zellij action detach'
 
 # Fuzzy find + attach sessão
 zz() {
-    local session=$(zellij list-sessions 2>/dev/null | fzf | awk '{print $1}')
+    local session=$(zellij list-sessions --short 2>/dev/null | fzf)
     if [[ -n "$session" ]]; then
         zellij attach "$session"
     fi
