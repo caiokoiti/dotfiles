@@ -23,3 +23,4 @@ window-width = 99999999
 # macos-titlebar-style = hidden
 
 macos-icon-frame = beige
+keybind = shift+enter=text:\x1b\r

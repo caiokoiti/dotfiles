@@ -30,6 +30,10 @@ brew "n"           # Node version manager
 brew "helix"
 brew "zellij"
 
+# Language Servers for Helix
+brew "typescript-language-server"
+brew "vscode-langservers-extracted"  # Includes eslint-language-server
+
 # Git and Docker tools
 brew "lazygit"
 brew "lazydocker"

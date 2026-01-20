@@ -24,4 +24,6 @@ export SYMLINK_FILES=(
   "$DOTFILES_DIR/.config/starship.toml:$HOME_DIR/.config/starship.toml"
   "$DOTFILES_DIR/.config/.ripgreprc:$HOME_DIR/.ripgreprc"
   "$DOTFILES_DIR/.config/ghostty/config:$HOME_DIR/.config/ghostty/config"
+  "$DOTFILES_DIR/.config/helix/config.toml:$HOME_DIR/.config/helix/config.toml"
+  "$DOTFILES_DIR/.config/helix/languages.toml:$HOME_DIR/.config/helix/languages.toml"
 )

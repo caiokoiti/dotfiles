@@ -1,0 +1,41 @@
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "eslint"]
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = ["typescript-language-server", "eslint"]
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "eslint"]
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript-language-server", "eslint"]
+auto-format = true
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+validate = "on"
+experimental = { useFlatConfig = false }
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = ""
+
+[language-server.eslint.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.eslint.config.codeAction.showDocumentation]
+enable = true
+
+[language-server.eslint.config.workingDirectory]
+mode = "auto"
