@@ -3,6 +3,20 @@ function cd {
 }
 
 # Universal archive extractor
+function aliases() {
+    local selected
+    selected=$(
+        grep -E '^alias ' "$ALIASES_FILE" | sed 's/^alias //' | while IFS= read -r line; do
+            printf "%-15s  %s\n" \
+                "$(echo "$line" | cut -d'=' -f1)" \
+                "$(echo "$line" | grep -o '#[^#]*$' | sed 's/^#[[:space:]]*//')"
+        done | fzf --header="Aliases  |  Enter to execute  |  Esc to cancel"
+    )
+    [[ -z "$selected" ]] && return
+    local name="${selected%%  *}"
+    name="${name// /}"
+    eval "$name"
+}
 function extract() {
     if [ -f "$1" ]; then
         case $1 in
