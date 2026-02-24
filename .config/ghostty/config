@@ -31,7 +31,3 @@ keybind = shift+enter=text:\x1b\r
 keybind = ctrl+t=unbind          # Zellij: SwitchToMode "tab"
 keybind = ctrl+n=unbind          # Zellij: SwitchToMode "resize"
 keybind = ctrl+q=unbind          # Zellij: Quit
-keybind = alt+left=unbind        # Zellij: MoveFocusOrTab "left"
-keybind = alt+right=unbind       # Zellij: MoveFocusOrTab "right"
-keybind = alt+up=unbind          # Zellij: MoveFocus "up"
-keybind = alt+down=unbind        # Zellij: MoveFocus "down"
