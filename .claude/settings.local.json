@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(zellij list-sessions:*)",
+      "Bash(git worktree:*)"
+    ]
+  }
+}
