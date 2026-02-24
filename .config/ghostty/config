@@ -24,3 +24,14 @@ window-width = 99999999
 
 macos-icon-frame = beige
 keybind = shift+enter=text:\x1b\r
+
+# ── Zellij compatibility ─────────────────────────────────────────────────────
+# Unbind Ghostty-native shortcuts that conflict with Zellij so they pass
+# through to the terminal and Zellij can handle them.
+keybind = ctrl+t=unbind          # Zellij: SwitchToMode "tab"
+keybind = ctrl+n=unbind          # Zellij: SwitchToMode "resize"
+keybind = ctrl+q=unbind          # Zellij: Quit
+keybind = alt+left=unbind        # Zellij: MoveFocusOrTab "left"
+keybind = alt+right=unbind       # Zellij: MoveFocusOrTab "right"
+keybind = alt+up=unbind          # Zellij: MoveFocus "up"
+keybind = alt+down=unbind        # Zellij: MoveFocus "down"
