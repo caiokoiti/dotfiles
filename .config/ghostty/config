@@ -23,11 +23,10 @@ window-width = 99999999
 # macos-titlebar-style = hidden
 
 macos-icon-frame = beige
-keybind = shift+enter=text:\x1b\r
 
-# ── Zellij compatibility ─────────────────────────────────────────────────────
-# Unbind Ghostty-native shortcuts that conflict with Zellij so they pass
-# through to the terminal and Zellij can handle them.
-keybind = ctrl+t=unbind          # Zellij: SwitchToMode "tab"
-keybind = ctrl+n=unbind          # Zellij: SwitchToMode "resize"
-keybind = ctrl+q=unbind          # Zellij: Quit
+# ── Keybinds ──────────────────────────────────────────────────────────────────
+# Clear all Ghostty defaults — Zellij handles everything.
+keybind = clear
+keybind = ctrl+shift+p=toggle_command_palette
+keybind = super+left=ignore
+keybind = super+right=ignore
