@@ -24,7 +24,7 @@ Open a new terminal after installation for changes to take effect.
 
 ## What's Included
 
-- **Shell**: Enhanced zsh configuration with history management
+- **Shell**: Enhanced zsh configuration with history management and autosuggestions
 - **Prompt**: Starship with Dracula theme
 - **Terminal**: Ghostty and iTerm2 (preferences versioned in `iterm2/`)
 - **Editor**: Helix (`hx`) with LSP for TypeScript/JavaScript
@@ -77,6 +77,14 @@ git clone git@github.com:caiokoiti/dotfiles-work.git ~/dotfiles-work
 
 The uninstall script cleanly removes all customizations and offers to restore from backup.
 
+## Health Check
+
+```bash
+./doctor.zsh
+```
+
+Checks the full installation state: `.zshrc` source block, symlinks, required tools, iTerm2 config, zsh cache, backups, and work dotfiles. Reports issues with fix instructions.
+
 ## Requirements
 
 - macOS (Intel or Apple Silicon)
@@ -84,7 +92,7 @@ The uninstall script cleanly removes all customizations and offers to restore fr
 
 ## Notes
 
-- Automatically creates backups before any modifications
+- Automatically creates backups before any modifications (handles both files and symlinks)
 - Configures for Australian locale and timezone (Perth)
 - Dracula theme applied consistently across all compatible tools
 - `reload` alias reloads everything (personal + work dotfiles) in the current session
