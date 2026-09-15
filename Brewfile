@@ -26,6 +26,8 @@ brew "zsh-autosuggestions"
 brew "ripgrep"
 brew "fd"
 brew "bat"
+brew "jq"
+brew "yq"
 
 # Development
 brew "n"           # Node version manager
