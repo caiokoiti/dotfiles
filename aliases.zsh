@@ -8,19 +8,16 @@ alias c='clear'                                                             # Cl
 alias cleanupDS='find . -type f -name "*.DS_Store" -ls -delete'            # Remove .DS_Store files
 alias cpwd='pwd | pbcopy'                                                   # Copy current path to clipboard
 alias f='open -a Finder ./'                                                 # Open Finder in current dir
-# List files (detailed) — use GNU ls flags if available, fallback to BSD
-if ls --color=auto &>/dev/null 2>&1; then
-    alias ll='ls -l -A -h -F --color=auto'  # GNU ls (coreutils via Homebrew)
-else
-    alias ll='ls -l -A -h -F -G'            # BSD ls (macOS default)
-fi
+# List files (detailed) — delegates to _ls_detail() in functions.zsh for BSD/GNU compat
+alias ll='_ls_detail'
 alias mkdir='mkdir -pv'                                                     # Create dirs with parents
 alias qfind='find . -name'                                                  # Quick find by name
 
 # Tools and utilities
-alias path='echo -e ${PATH//:/\\n}'                                        # Print PATH entries line by line
+alias path='print -l ${(s/:/)PATH}'                                        # Print PATH entries line by line
 alias less='less -FSRXc'                                                    # Less with sane defaults
 alias kk='kiro-cli chat --resume'                                           # Resume Kiro AI chat
+alias reload='source ~/.zshrc'                                              # Reload shell config (personal + work)
 
 # Custom scripts
 alias compress='compress_screencaps.sh'                                     # Compress screen recordings

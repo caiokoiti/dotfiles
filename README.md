@@ -32,6 +32,20 @@ Open a new terminal after installation for changes to take effect.
 - **Utilities**: Custom scripts for file operations and media conversion
 - **Node.js**: N version manager pre-configured
 
+## Performance
+
+Shell startup is optimized to minimize terminal open delay:
+
+- **Homebrew** env vars are hardcoded instead of running `brew shellenv` on every startup
+- **Starship, direnv, zoxide, fzf** init scripts are cached in `~/.zsh_cache/` and only regenerated when the binary changes — eliminates one subprocess fork per tool per terminal open
+- **compinit** uses zsh glob qualifiers instead of a `find` subprocess for the cache freshness check
+
+To force a cache regeneration (e.g. after upgrading a tool):
+
+```bash
+rm -rf ~/.zsh_cache && reload
+```
+
 ## Customization
 
 All configurations are clearly organized:
@@ -73,3 +87,4 @@ The uninstall script cleanly removes all customizations and offers to restore fr
 - Automatically creates backups before any modifications
 - Configures for Australian locale and timezone (Perth)
 - Dracula theme applied consistently across all compatible tools
+- `reload` alias reloads everything (personal + work dotfiles) in the current session
