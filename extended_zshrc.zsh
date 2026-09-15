@@ -127,11 +127,6 @@ if [[ -f "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]
     source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
-# ── Work dotfiles fpath (must be before compinit) ─────────────────────────────
-# Register completions from ~/dotfiles-work before compinit runs so _dab is
-# picked up. The full init.zsh is sourced again after compinit for everything else.
-[[ -d "$HOME/dotfiles-work/completions" ]] && fpath=("$HOME/dotfiles-work/completions" $fpath)
-
 # ── Autocompletion ────────────────────────────────────────────────────────────
 # Uses zsh glob qualifiers instead of a find subprocess for the mtime check.
 autoload -Uz compinit
