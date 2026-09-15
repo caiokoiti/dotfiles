@@ -107,6 +107,14 @@ create_symlinks() {
   done
 }
 
+# Function to configure iTerm2 to load preferences from the dotfiles repo
+configure_iterm2() {
+  echo "Configuring iTerm2 to load preferences from dotfiles..."
+  defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$DOTFILES_DIR/iterm2"
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+  echo "iTerm2 will load preferences from $DOTFILES_DIR/iterm2"
+}
+
 # Main installation function
 install() {
   echo "Starting installation of custom dotfiles..."
@@ -123,9 +131,9 @@ install() {
   
   create_symlinks
 
-  echo "Installation complete!"
-  source "$ZSHRC_PATH"
-  echo "Configuration applied!"
+  configure_iterm2
+
+  echo "Installation complete! Open a new terminal for changes to take effect."
 }
 
 # Run installation

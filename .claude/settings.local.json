@@ -1,8 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(zellij list-sessions:*)",
-      "Bash(git worktree:*)"
+      "Bash(git worktree:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(./compress_screencaps.sh /nonexistent_dir_xyz)",
+      "Bash(echo \"exit code: $?\")",
+      "Bash(mkdir -p /tmp/emptytest)",
+      "Bash(./compress_screencaps.sh /tmp/emptytest)",
+      "Bash(echo \"exit: $?\")"
     ]
   }
 }

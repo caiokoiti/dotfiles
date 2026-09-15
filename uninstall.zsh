@@ -60,10 +60,10 @@ restore_backup() {
       # Restore other configuration files as needed
       for link in "${SYMLINK_FILES[@]}"; do
         local dest="${link##*:}"
-        local backup_file="$latest_backup/$(basename "$dest")"
+        local backup_path="$latest_backup/$(basename "$dest")"
         
-        if [[ -f "$backup_file" ]]; then
-          cp "$backup_file" "$dest"
+        if [[ -f "$backup_path" ]]; then
+          cp "$backup_path" "$dest"
           echo "Restored $(basename "$dest") from backup"
         fi
       done
