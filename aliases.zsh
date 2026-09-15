@@ -8,7 +8,12 @@ alias c='clear'                                                             # Cl
 alias cleanupDS='find . -type f -name "*.DS_Store" -ls -delete'            # Remove .DS_Store files
 alias cpwd='pwd | pbcopy'                                                   # Copy current path to clipboard
 alias f='open -a Finder ./'                                                 # Open Finder in current dir
-alias ll='ls -l -A -h -F --color=auto'                                     # List files (detailed)
+# List files (detailed) — use GNU ls flags if available, fallback to BSD
+if ls --color=auto &>/dev/null 2>&1; then
+    alias ll='ls -l -A -h -F --color=auto'  # GNU ls (coreutils via Homebrew)
+else
+    alias ll='ls -l -A -h -F -G'            # BSD ls (macOS default)
+fi
 alias mkdir='mkdir -pv'                                                     # Create dirs with parents
 alias qfind='find . -name'                                                  # Quick find by name
 
