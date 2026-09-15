@@ -20,6 +20,7 @@ brew "starship"
 brew "direnv" 
 brew "zoxide"
 brew "fzf"
+brew "zsh-autosuggestions"
 
 # Search and file tools
 brew "ripgrep"
