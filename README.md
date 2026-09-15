@@ -10,6 +10,7 @@ Personal configuration for macOS development environment.
 - Custom shell functions and aliases
 - History optimization and zsh enhancements
 - Built-in backup and restore functionality
+- Optional work dotfiles loaded automatically if present
 
 ## Installation
 
@@ -19,22 +20,40 @@ cd dotfiles
 ./install.zsh
 ```
 
+Open a new terminal after installation for changes to take effect.
+
 ## What's Included
 
 - **Shell**: Enhanced zsh configuration with history management
-- **Tools**: Starship prompt, direnv, zoxide, fzf
-- **Development**: Neovim, git tools, ripgrep, fd
+- **Prompt**: Starship with Dracula theme
+- **Terminal**: Ghostty and iTerm2 (preferences versioned in `iterm2/`)
+- **Editor**: Helix (`hx`) with LSP for TypeScript/JavaScript
+- **Tools**: direnv, zoxide, fzf, ripgrep, fd, bat
 - **Utilities**: Custom scripts for file operations and media conversion
 - **Node.js**: N version manager pre-configured
 
 ## Customization
 
 All configurations are clearly organized:
-- `config.zsh`: Central configuration variables
+- `config.zsh`: Central configuration variables and symlink registry
 - `extended_zshrc.zsh`: Main shell enhancements
 - `aliases.zsh`: Convenient command shortcuts
 - `functions.zsh`: Custom shell functions
 - `bin/`: Executable scripts added to PATH
+- `.config/`: Tool-specific configs (Starship, Helix, Ghostty, ripgrep)
+
+## Work Dotfiles
+
+Work-specific aliases and configuration live in a separate private repo
+to keep company tooling and commands out of this public repo.
+
+If `~/dotfiles-work/init.zsh` exists, it is sourced automatically on
+shell startup — no extra setup needed on personal machines.
+
+```bash
+# On a work machine:
+git clone git@github.com:caiokoiti/dotfiles-work.git ~/dotfiles-work
+```
 
 ## Uninstallation
 
@@ -52,5 +71,5 @@ The uninstall script cleanly removes all customizations and offers to restore fr
 ## Notes
 
 - Automatically creates backups before any modifications
-- Configures for Australian locale and timezone
-- Uses the Dracula theme for compatible tools
+- Configures for Australian locale and timezone (Perth)
+- Dracula theme applied consistently across all compatible tools
