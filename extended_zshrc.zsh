@@ -102,3 +102,6 @@ fi
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Work dotfiles (private repo, optional — only loaded if present)
+[ -f "$HOME/dotfiles-work/init.zsh" ] && source "$HOME/dotfiles-work/init.zsh"
