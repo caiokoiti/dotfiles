@@ -45,3 +45,4 @@ brew "ffmpeg"      # For compress_screencaps.sh
 # Fonts
 cask "font-fira-mono-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
