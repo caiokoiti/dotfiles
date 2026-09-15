@@ -8,6 +8,7 @@ brew "p7zip"
 brew "make"
 brew "gcc"
 cask "ghostty"
+cask "iterm2"
 cask "spotify"
 cask "sourcetree"
 cask "whatsapp"
@@ -28,7 +29,6 @@ brew "bat"
 # Development
 brew "n"           # Node version manager
 brew "helix"
-brew "zellij"
 
 # Language Servers for Helix
 brew "typescript-language-server"

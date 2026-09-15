@@ -27,31 +27,3 @@ alias compressOD='compress_screencaps.sh ~/Library/CloudStorage/OneDrive-Dabble/
 alias lg='lazygit'                                                          # Git TUI
 alias ld='lazydocker'                                                       # Docker TUI
 
-# ============================================
-# Zellij Aliases
-# ============================================
-
-alias zj='zellij attach -c $(basename "$PWD")'                             # Attach/create session named after cwd
-alias zls='zellij list-sessions'                                            # List all sessions
-alias zk='zellij kill-session'                                              # Kill a specific session
-alias zka='zellij kill-all-sessions'                                        # Kill all sessions
-alias zdel='zellij delete-session'                                          # Delete a specific session
-alias zclean='zellij list-sessions --no-formatting 2>/dev/null | grep "EXITED" | awk "{print \$1}" | xargs -I {} zellij delete-session {}' # Clean exited sessions
-alias zdetach='zellij action detach'                                        # Detach from current session
-
-# Fuzzy find + attach sessão
-zz() {
-    local session=$(zellij list-sessions --no-formatting 2>/dev/null | fzf | awk '{print $1}')
-    if [[ -n "$session" ]]; then
-        zellij attach "$session"
-    fi
-}
-
-# Cria nova sessão com nome customizado
-zn() {
-    if [ -z "$1" ]; then
-        echo "Usage: zn <session-name>"
-        return 1
-    fi
-    zellij attach -c "$1"
-}
