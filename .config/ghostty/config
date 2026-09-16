@@ -14,12 +14,12 @@ font-family = JetBrainsMono Nerd Font Mono
 
 confirm-close-surface = false
 maximize = true
-fullscreen = false
-
-# comment?
-window-height = 99999999
-window-width = 99999999
-
-# macos-titlebar-style = hidden
 
 macos-icon-frame = beige
+
+# ── Keybinds ──────────────────────────────────────────────────────────────────
+# Clear all Ghostty defaults — using native macOS shortcuts only.
+keybind = clear
+keybind = ctrl+shift+p=toggle_command_palette
+keybind = super+left=ignore
+keybind = super+right=ignore
