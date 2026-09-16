@@ -8,7 +8,6 @@ brew "p7zip"
 brew "make"
 brew "gcc"
 cask "ghostty"
-cask "iterm2"
 cask "spotify"
 cask "whatsapp"
 cask "visual-studio-code"
@@ -18,7 +17,6 @@ brew "starship"
 brew "direnv"
 brew "zoxide"
 brew "fzf"
-brew "zsh-autosuggestions"
 
 # Search and file tools
 brew "ripgrep"
@@ -44,5 +42,4 @@ brew "ffmpeg"      # For compress_screencaps.sh
 
 # Fonts
 cask "font-fira-mono-nerd-font"
-cask "font-jetbrains-mono-nerd-font"
 cask "font-jetbrains-mono-nerd-font"

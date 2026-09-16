@@ -17,7 +17,6 @@ export PATH="$PATH:$DOTFILES_DIR/bin"
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-HIST_STAMPS="dd-mm-yyyy"
 
 setopt EXTENDED_HISTORY       # Save timestamp + duration with each entry
 setopt HIST_IGNORE_ALL_DUPS   # Remove older duplicate entries (subsumes HIST_IGNORE_DUPS)
@@ -117,14 +116,6 @@ if command -v fzf >/dev/null 2>&1; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     bindkey '^R' fzf-history-widget
     bindkey '^T' fzf-file-widget
-fi
-
-# ── zsh-autosuggestions ───────────────────────────────────────────────────────
-# Suggests commands in grey as you type based on history (fish-style).
-# Press → or End to accept the full suggestion, or keep typing to ignore it.
-# Uses $HOMEBREW_PREFIX set above — no extra fork needed.
-if [[ -f "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
-    source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 # ── Autocompletion ────────────────────────────────────────────────────────────
